@@ -1,30 +1,38 @@
-# SvelteKit-Shopify Storefront Starter
+# sv
 
-![Cover](cover.png)
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-[Live preview](https://sveltekit-shopify-storefront-starter.vercel.app/)
+## Creating a project
 
-This is a template for creating a Storefront with SvelteKit and the [Shopify Storefront API](https://shopify.dev/docs/api/storefront). The template is constantly being improved and the code refactored
+If you're seeing this, you've probably already done this step. Congrats!
 
-Some of the features:
-- listing all products in store as product cards
-- Product page
-- Simple product card pagination
-- Adding items to cart
-- Checking out a single product seperate from cart
+```bash
+# create a new project in the current directory
+npx sv create
 
-To develop locally:
-- Clone the repo
-- Run ```npm install```
-- Start development server ```npm run dev```
+# create a new project in my-app
+npx sv create my-app
+```
 
-Add the following environment variables:
-- ```VITE_SHOPIFY_STOREFRONT_API_TOKEN```: The public access token provided by the Headless app in your Shopify store
-- ```VITE_STORE_NAME```: The name of your Shopify store that is before ".myshopify.com" (eg:test-sveltekit-store)
+## Developing
 
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-## Deploy
-Deploy to Vercel or Netlify:
+```bash
+npm run dev
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/joe-ashraf01/sveltekit-shopify-storefront-starter)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/joe-ashraf01/sveltekit-shopify-storefront-starter)
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

@@ -1,36 +1,58 @@
 <script>
-	import ProductList from '../lib/components/ProductList.svelte'
-	import { siteName } from '../lib/config';
-
-	export let data;
-
-	$: latestProducts = data.latestProducts
+	import HeroSlider from '$lib/components/HeroSlider.svelte';
+import ProductCard from '$lib/components/product/ProductCard.svelte';
 </script>
 
-<svelte:head>
-	<title>{siteName}</title>
-</svelte:head>
-
-<h1>Latest Products</h1>
-<div class="latest-products flex-center">
-	<ProductList products={latestProducts}/>
+<HeroSlider />
+<div class="flex w-full flex-wrap gap-4 p-4">
+	<ProductCard
+		product={{
+			title: `Sample Product ${0 + 1}`,
+			price: `$${(0 + 1) * 10}.99`,
+			description: 'This is a great product with amazing features and benefits.',
+			image: '/img/product-placeholder.png',
+			variants: ['S', 'M', 'L', 'XL']
+		}}
+	/>
+	<ProductCard
+		product={{
+			title: `Sample Product ${0 + 1}`,
+			price: `$${(0 + 1) * 10}.99`,
+			description: 'This is a great product with amazing features and benefits.',
+			image: '/img/product-placeholder.png',
+			variants: ['S', 'M', 'L', 'XL']
+		}}
+	/><ProductCard
+		product={{
+			title: `Sample Product ${0 + 1}`,
+			price: `$${(0 + 1) * 10}.99`,
+			description: 'This is a great product with amazing features and benefits.',
+			image: '/img/product-placeholder.png',
+			variants: ['S', 'M', 'L', 'XL']
+		}}
+	/><ProductCard
+		product={{
+			title: `Sample Product ${0 + 1}`,
+			price: `$${(0 + 1) * 10}.99`,
+			description: 'This is a great product with amazing features and benefits.',
+			image: '/img/product-placeholder.png',
+			variants: ['S', 'M', 'L', 'XL']
+		}}
+	/><ProductCard
+		product={{
+			title: `Sample Product ${0 + 1}`,
+			price: `$${(0 + 1) * 10}.99`,
+			description: 'This is a great product with amazing features and benefits.',
+			image: '/img/product-placeholder.png',
+			variants: ['S', 'M', 'L', 'XL']
+		}}
+	/><ProductCard
+		product={{
+			title: `Sample Product ${0 + 1}`,
+			price: `$${(0 + 1) * 10}.99`,
+			description: 'This is a great product with amazing features and benefits.',
+			image: '/img/product-placeholder.png',
+			variants: ['S', 'M', 'L', 'XL']
+		}}
+	/>
 </div>
-
-<style lang="scss">
-	* {
-		box-sizing: border-box;
-	}
-	h1 {
-		font-weight: normal;
-		text-align: center;
-		margin: 3rem;
-		box-sizing: border-box;
-	}
-
-	.latest-products {
-		flex-wrap: wrap;
-		justify-content: center;
-		margin: 4rem 0;
-		margin-top: 0;
-	}
-</style>
