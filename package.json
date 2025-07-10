@@ -14,7 +14,8 @@
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run && npm run test:e2e",
-		"test:e2e": "playwright test"
+		"test:e2e": "playwright test",
+		"graphql-codegen": "graphql-codegen"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
@@ -46,8 +47,10 @@
 	},
 	"dependencies": {
 		"@iconify-icons/solar": "^1.2.3",
+		"@shopify/api-codegen-preset": "^1.1.8",
 		"@shopify/storefront-api-client": "^1.0.8",
 		"clsx": "^2.1.1",
+		"node-fetch": "^3.3.2",
 		"svelte-portal": "^2.2.1"
 	}
 }
