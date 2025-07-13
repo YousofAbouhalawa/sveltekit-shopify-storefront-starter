@@ -1,148 +1,43 @@
-<script>
-  // Sample data and state
-  let categories = ['Laptops', 'Phones', 'Accessories'];
-  let selectedCategories = [];
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { derived } from 'svelte/store';
 
-  let brands = ['Apple', 'Samsung', 'Dell', 'Sony'];
-  let selectedBrands = [];
+	export let collections: {
+		handle: string;
+		title: string;
+	}[];
 
-  let minPrice = '';
-  let maxPrice = '';
 
-  let rating = '';
+	let selectedCollection = '';
 
-  let sortBy = 'relevance';
+	const currentHandle = derived(page, ($page) => $page.params.collectionHandle || '');
 
-  // Events
-  function toggleSelection(list, value) {
-    const index = list.indexOf(value);
-    if (index === -1) list.push(value);
-    else list.splice(index, 1);
-  }
+	$currentHandle;
 
-  function applyFilters() {
-    console.log({
-      selectedCategories,
-      selectedBrands,
-      priceRange: [minPrice, maxPrice],
-      rating,
-      sortBy
-    });
-
-    // You'll replace this with real filtering logic
-  }
+	$: selectedCollection = $currentHandle;
 </script>
 
-<style>
-  .shop-container {
-    display: flex;
-    gap: 2rem;
-    padding: 2rem;
-  }
-
-  .sidebar {
-    width: 250px;
-    border-right: 1px solid #ccc;
-    padding-right: 1rem;
-  }
-
-  .main {
-    flex: 1;
-  }
-
-  .filter-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .filter-group h3 {
-    margin-bottom: 0.5rem;
-  }
-
-  .sort-bar {
-    margin-bottom: 1rem;
-  }
-</style>
-
-<div class="shop-container">
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="filter-group">
-      <h3>Category</h3>
-      {#each categories as cat}
-        <label>
-          <input
-            type="checkbox"
-            bind:group={selectedCategories}
-            value={cat}
-          />
-          {cat}
-        </label><br />
-      {/each}
-    </div>
-
-    <div class="filter-group">
-      <h3>Brand</h3>
-      {#each brands as brand}
-        <label>
-          <input
-            type="checkbox"
-            bind:group={selectedBrands}
-            value={brand}
-          />
-          {brand}
-        </label><br />
-      {/each}
-    </div>
-
-    <div class="filter-group">
-      <h3>Price</h3>
-      <input
-        type="number"
-        placeholder="Min"
-        bind:value={minPrice}
-        style="width: 100px"
-      />
-      –
-      <input
-        type="number"
-        placeholder="Max"
-        bind:value={maxPrice}
-        style="width: 100px"
-      />
-    </div>
-
-    <div class="filter-group">
-      <h3>Rating</h3>
-      <select bind:value={rating}>
-        <option value="">Any</option>
-        <option value="4">4★ & up</option>
-        <option value="3">3★ & up</option>
-        <option value="2">2★ & up</option>
-        <option value="1">1★ & up</option>
-      </select>
-    </div>
-
-    <button on:click={applyFilters}>Apply Filters</button>
-  </div>
-
-  <!-- Main content -->
-  <div class="main">
-    <div class="sort-bar">
-      <label>
-        Sort by:
-        <select bind:value={sortBy}>
-          <option value="relevance">Relevance</option>
-          <option value="priceLowHigh">Price: Low to High</option>
-          <option value="priceHighLow">Price: High to Low</option>
-          <option value="ratingHighLow">Rating</option>
-          <option value="newest">Newest Arrivals</option>
-        </select>
-      </label>
-    </div>
-
-    <!-- Product grid or results go here -->
-    <div>
-      <p>Product grid goes here... (filter + sorting to be applied)</p>
-    </div>
-  </div>
+<div class="flex h-48 flex-col gap-6 p-6 md:flex-row">
+	<div class="w-full space-y-4 rounded-lg border border-gray-300 bg-white p-6 shadow md:w-64">
+		<div>
+			<h3 class="text-md mb-2 font-semibold text-gray-700">Collections</h3>
+			<div class="space-y-0">
+				{#each collections as cat}
+					<label class="flex items-center space-x-2 text-gray-600">
+						<input
+							type="radio"
+							name="collection"
+							value={cat.handle}
+							bind:group={selectedCollection}
+							on:change={() => goto(`/shop/${cat.handle}`)}
+							checked={selectedCollection === cat.handle}
+							class="form-radio text-blue-600"
+						/>
+						<span class="text-sm">{cat.title}</span>
+					</label>
+				{/each}
+			</div>
+		</div>
+	</div>
 </div>
